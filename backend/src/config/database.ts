@@ -19,22 +19,16 @@ const pool = new Pool({
   ssl: isProduction ? { rejectUnauthorized: false } : undefined, // useful for cloud db
 });
 
-
 export const connectDB = async () => {
   try {
     const client = await pool.connect();
     {
-      isProduction
-        ? console.log(
-            `✅ Connected to ${isProduction ? "Production" : "Development"} ${
-              process.env.DB_NAME_PROD
-            } Database`
-          )
-        : console.log(
-            `✅ Connected to ${isProduction ? "Production" : "Development"} ${
-              process.env.DB_NAME_DEV
-            } Database`
-          );
+      isProduction;
+      console.log(
+        `✅ Connected to ${isProduction ? "Production" : "Development"} ${
+          isProduction ? process.env.DB_NAME_PROD : process.env.DB_NAME_DEV
+        } Database`
+      );
     }
 
     client.release();
