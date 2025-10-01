@@ -5,6 +5,6 @@ import { AppDataSource } from "./database/data-source";
 
 AppDataSource.initialize().then(async () => {
   app.listen(process.env.PORT, () => {
-    console.log(`🚀 Server is running on port: ${process.env.PORT}`);
+    console.log(`🚀 Library server is running on port: ${process.env.PORT}`);
   });
 });
