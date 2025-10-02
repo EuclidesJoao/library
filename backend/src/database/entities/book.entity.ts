@@ -9,7 +9,7 @@ import {
   DeleteDateColumn,
   OneToMany
 } from "typeorm";
-import { BookCategory } from "./book-category.entity";
+import { BookCategoryEntity } from "./book-category.entity";
 import { Author } from "./author.entity";
 import { InventoryItem } from "./inventoryItem.entity";
 
@@ -21,7 +21,7 @@ export enum BookFormat {
 }
 
 @Entity({ name: "book" })
-export class Book {
+export class BookEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -64,15 +64,14 @@ export class Book {
   })
   authors: Author[];
 
-  @ManyToMany(() => BookCategory, (category) => category.books)
+  @ManyToMany(() => BookCategoryEntity, (category) => category.books)
   @JoinTable({
     name: "book_has_category",
     joinColumn: { name: "book_id", referencedColumnName: "id" },
     inverseJoinColumn: { name: "category_id", referencedColumnName: "id" },
   })
-  categories: BookCategory[];
+  categories: BookCategoryEntity[];
 
-    // A book can have multiple inventory records (e.g., one per location)
   @OneToMany(() => InventoryItem, (inventoryItem) => inventoryItem.book)
   inventory: InventoryItem[];
 

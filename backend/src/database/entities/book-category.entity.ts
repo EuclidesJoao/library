@@ -6,21 +6,21 @@ import {
   UpdateDateColumn,
   ManyToMany,
 } from "typeorm";
-import { Book } from "./book.entity";
+import { BookEntity } from "./book.entity";
 
 @Entity({ name: "book_category" })
-export class BookCategory {
+export class BookCategoryEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ name: "designation", type: "varchar", unique: true })
+  @Column({ name: "designation", type: "varchar"})
   designation: string;
 
   @Column({ name: "description", type: "text", nullable: true })
   description: string;
 
-  @ManyToMany(() => Book, (book) => book.categories)
-  books: Book[];
+  @ManyToMany(() => BookEntity, (book) => book.categories)
+  books: BookEntity[];
 
   @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
   createdAt: Date;

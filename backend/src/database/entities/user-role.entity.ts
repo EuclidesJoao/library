@@ -6,12 +6,12 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 
-@Entity({ name: "user_roles" })
+@Entity({ name: "user_role" })
 export class UserRole {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "varchar" })
   designation: string;
 
   @Column({ type: "text", nullable: true })

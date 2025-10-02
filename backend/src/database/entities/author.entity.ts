@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   ManyToMany,
 } from "typeorm";
-import { Book } from "./book.entity";
+import { BookEntity } from "./book.entity";
 
 @Entity({ name: "author" })
 export class Author {
@@ -23,8 +23,8 @@ export class Author {
   birthDate: Date;
 
   // This defines the other side of the many-to-many relationship
-  @ManyToMany(() => Book, (book) => book.authors)
-  books: Book[];
+  @ManyToMany(() => BookEntity, (book) => book.authors)
+  books: BookEntity[];
 
   @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
   createdAt: Date;

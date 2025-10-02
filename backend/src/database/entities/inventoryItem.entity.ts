@@ -8,7 +8,7 @@ import {
   JoinColumn,
   ManyToOne,
 } from "typeorm";
-import { Book } from "./book.entity";
+import { BookEntity } from "./book.entity";
 
 @Entity({ name: "inventory_item" })
 export class InventoryItem {
@@ -26,11 +26,10 @@ export class InventoryItem {
   @Column({ name: "location", type: "varchar", nullable: true })
   location: string; // e.g., "Warehouse A", "Downtown Store"
 
-  // --- Relationship to the Book ---
   // Each inventory item is linked to exactly one book.
-  @ManyToOne(() => Book, (book) => book.inventory, { nullable: false })
+  @ManyToOne(() => BookEntity, (book) => book.inventory, { nullable: false })
   @JoinColumn({ name: "book_id" })
-  book: Book;
+  book: BookEntity;
 
   // --- Timestamps ---
   @CreateDateColumn({ name: "created_at", type: "timestamp with time zone" })
